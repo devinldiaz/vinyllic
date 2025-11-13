@@ -18,19 +18,19 @@ pool.getConnection((err) => {
 }
 );
 
-async function getVinyls(){
+export async function getVinyls(){
   const [rows] = await pool.query(`SELECT * FROM vinyls`);
   return rows;
 }
 
-async function getVinyl(id){
+export async function getVinyl(id){
   const [rows] = await pool.query(
     `SELECT * FROM vinyls WHERE vinyl_id = ?`, [id]
   )
   return rows[0];
 }
 
-async function createVinyl(name){
+export async function createVinyl(name){
   const result = await pool.query(
     `INSERT INTO vinyls (name) VALUES (?)`, [name]
   );
