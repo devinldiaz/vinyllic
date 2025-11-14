@@ -9,11 +9,18 @@ import { ApiService } from './api.service'
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  message: string;
+  vinyls: any[] = [];
+
   constructor(private apiService: ApiService){}
   ngOnInit() {
-    this.apiService.getMessage().subscribe(
-      (data:any) => {this.message = data;},
+    this.fetchVinyls();
+  }
+  fetchVinyls() {
+      this.apiService.getVinyls().subscribe(
+      (data:any) => {
+        this.vinyls = data;
+        console.log(this.vinyls);
+      },
       (error: any) => {console.error('An error occurred:', error);}
     )
   }
