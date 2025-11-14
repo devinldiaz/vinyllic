@@ -1,6 +1,7 @@
 import express from 'express'
 import { getVinyls, getVinyl, createVinyl } from "./db_connection.js"
 
+const cors = require('cors');
 const app = express()
 
 app.use(express.json())
