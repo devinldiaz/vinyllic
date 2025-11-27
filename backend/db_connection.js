@@ -38,9 +38,8 @@ export async function createVinyl(name){
   return getVinyl(id);
 }
 
-
-const vinyl = await getVinyl(2);
-console.log(vinyl);
+//const vinyl = await getVinyl(2);
+//console.log(vinyl);
 
 // const result = await createVinyl('The Symposium');
 // console.log(result);
