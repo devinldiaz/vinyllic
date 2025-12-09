@@ -19,3 +19,13 @@ h3 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.3s;
 }
+
+.vinyl-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--card-dark);
+}
+
+.vinyl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px var(--accent-cyan);
+}

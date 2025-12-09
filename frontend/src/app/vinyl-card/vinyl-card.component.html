@@ -1,8 +1,14 @@
-<div class="card">
-  <img src="https://i.pinimg.com/736x/12/af/15/12af15bd6ef68b0090bb4d1a98191935.jpg"/>
+<div class="vinyl-card">
+  <div>
+    <img
+      [src]="vinyl.photo_file_path || 'https://i.pinimg.com/736x/12/af/15/12af15bd6ef68b0090bb4d1a98191935.jpg'"
+      class="rounded"
+      style="width:100%;height:200px;object-fit:cover;"
+    />
+  </div>
   <div class="info-container">
-    <h3>{{ vinyl?.name }}</h3>
-    <p>Artist name</p>
-    <p>Genre</p>
+    <h3 class="cyber-glow">{{ vinyl?.name }}</h3>
+    <p class="text-dim">Artist: {{vinyl?.artist_name || 'Unknown'}}</p>
+    <p class="text-dim">Genre: {{vinyl?.genre || 'Unknown'}}</p>
   </div>
 </div>

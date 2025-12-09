@@ -20,6 +20,5 @@ export class CollectionPageComponent {
         console.log("Vinyls received:", data);
         this.vinyls = data
       }});
-      console.log("its working");
   }
 }

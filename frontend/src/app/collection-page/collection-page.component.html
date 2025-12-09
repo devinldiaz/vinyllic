@@ -1,4 +1,8 @@
-<div>
-    <app-vinyl-card *ngFor="let vinyl of vinyls" [vinyl] = "vinyl">
-    </app-vinyl-card>
+<div class="container mt-5">
+  <h1 class="cyber-glow">Owned Collection</h1>
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let vinyl of vinyls">
+      <app-vinyl-card [vinyl]="vinyl"></app-vinyl-card>
+    </div>
+  </div>
 </div>
