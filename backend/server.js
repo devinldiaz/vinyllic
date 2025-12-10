@@ -1,5 +1,5 @@
 import express from 'express';
-import { getVinyls, getVinyl, createVinyl } from "./db_connection.js";
+import { getVinyls, getVinyl, createVinyl, updateVinyl } from "./db_connection.js";
 import cors from 'cors';
 
 const app = express();
@@ -10,6 +10,23 @@ app.use(cors());
 app.get("/vinyls", async (req, res) => {
     const vinyls = await getVinyls();
     res.send(vinyls);
+})
+
+app.put("/vinyls/:id", async (req, res) => {
+    try{
+        const id = req.params.id;
+        const body = req.body;
+
+        const updatedVinyl = await updateVinyl(id, body);
+        if (!updatedVinyl) {
+            console.log("Vinyl not found with id:", id);
+            return res.status(404).send({ error: "Vinyl not found" });
+        }
+        res.json(updatedVinyl);
+    }
+    catch(error){
+        res.status(500).send({error: "Failed to update "});
+    }
 })
 
 app.listen(8080, () => {

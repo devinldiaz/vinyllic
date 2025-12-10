@@ -19,7 +19,12 @@ pool.getConnection((err) => {
 );
 
 export async function getVinyls(){
-  const [rows] = await pool.query(`SELECT * FROM vinyls`);
+  const [rows] = await pool.query(
+    `SELECT v.vinyl_id, v.name, v.photo_file_path, g.name as genre, a.name AS artist_name
+    FROM vinyls v
+    LEFT JOIN artists a ON v.artist_id = a.artist_id
+    LEFT JOIN genres g ON v.genre_id = g.genre_id`
+  );
   return rows;
 }
 
@@ -38,6 +43,54 @@ export async function createVinyl(name){
   return getVinyl(id);
 }
 
+export async function getArtist(id){
+  const [rows] = await pool.query(
+    `SELECT * FROM artists WHERE artist_id = ?`, [id]
+  )
+  return rows[0];
+}
+
+export async function createArtist(name){
+  const result = await pool.query(
+    `INSERT INTO artists (name) VALUES (?)`, [name]
+  );
+  const id = result.insertId;
+  return getArtist(id);
+}
+
+export async function updateVinyl(id, data) {
+  const fields = [];
+  const values = [];
+
+  for (const [key, value] of Object.entries(data)) {
+    if (value === undefined) continue; 
+
+    if (key === "genres") {
+      fields.push(`${key} = ?`);
+      values.push(JSON.stringify(value));
+    } else {
+      fields.push(`${key} = ?`);
+      values.push(value);
+    }
+  }
+
+  if (fields.length === 0) return getVinyl(id);
+
+  const sql = `
+    UPDATE vinyls
+    SET ${fields.join(", ")}
+    WHERE vinyl_id = ?
+  `;
+
+  values.push(id);
+
+  await pool.query(sql, values);
+
+  return getVinyl(id);
+}
+
+const updatedVinyl = await updateVinyl(6, {name: "New Name", owned: true});
+console.log(updatedVinyl);
 //const vinyl = await getVinyl(2);
 //console.log(vinyl);
 
