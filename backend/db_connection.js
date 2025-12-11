@@ -20,11 +20,11 @@ pool.getConnection((err) => {
 
 export async function getVinyls(){
   const [rows] = await pool.query(
-    `SELECT v.vinyl_id, v.name, v.photo_file_path, g.name as genre, a.name AS artist_name
+    `SELECT v.vinyl_id, v.name, v.photo_file_path, JSON_EXTRACT(v.genres, '$') AS genres, a.name AS artist_name
     FROM vinyls v
-    LEFT JOIN artists a ON v.artist_id = a.artist_id
-    LEFT JOIN genres g ON v.genre_id = g.genre_id`
+    LEFT JOIN artists a ON v.artist_id = a.artist_id`
   );
+
   return rows;
 }
 
@@ -88,9 +88,6 @@ export async function updateVinyl(id, data) {
 
   return getVinyl(id);
 }
-
-const updatedVinyl = await updateVinyl(6, {name: "New Name", owned: true});
-console.log(updatedVinyl);
 //const vinyl = await getVinyl(2);
 //console.log(vinyl);
 
