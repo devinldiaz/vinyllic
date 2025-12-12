@@ -1,5 +1,10 @@
 <div class="vinyl-card">
   <div>
+    <button class="edit-btn" (click)="openEdit()">
+      <span class="material-icons">edit</span>
+    </button>
+  </div>
+  <div>
     <img
       [src]="vinyl.photo_file_path || 'https://i.pinimg.com/736x/12/af/15/12af15bd6ef68b0090bb4d1a98191935.jpg'"
       class="rounded"
@@ -9,6 +14,6 @@
   <div class="info-container">
     <h3 class="cyber-glow">{{ vinyl?.name }}</h3>
     <p class="text-dim">Artist: {{vinyl?.artist_name || 'Unknown'}}</p>
-    <p class="text-dim">Genre: {{vinyl?.genre || 'Unknown'}}</p>
+    <p class="text-dim">Genre: {{vinyl?.genres || 'Unknown'}}</p>
   </div>
 </div>

@@ -20,9 +20,8 @@ pool.getConnection((err) => {
 
 export async function getVinyls(){
   const [rows] = await pool.query(
-    `SELECT v.vinyl_id, v.name, v.photo_file_path, JSON_EXTRACT(v.genres, '$') AS genres, a.name AS artist_name
-    FROM vinyls v
-    LEFT JOIN artists a ON v.artist_id = a.artist_id`
+    `SELECT v.vinyl_id, v.name, v.photo_file_path, JSON_EXTRACT(v.genres, '$') AS genres, artist_name
+    FROM vinyls v`
   );
 
   return rows;

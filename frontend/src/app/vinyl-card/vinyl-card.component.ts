@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common'
 
 @Component({
@@ -7,6 +7,14 @@ import { CommonModule } from '@angular/common'
   templateUrl: './vinyl-card.component.html',
   styleUrls: ['./vinyl-card.component.css']
 })
+
+
 export class VinylCardComponent {
   @Input() vinyl: any;
+  @Output() edit = new EventEmitter<any>();
+
+  openEdit() {
+    this.edit.emit(this.vinyl);
+  }
+  
 }

@@ -1,0 +1,27 @@
+<div class="modal-backdrop" (click)="closeModal()"></div>
+
+<div class="modal-window">
+  <div class="modal-header">
+    <h2 class="cyber-title">Edit Vinyl</h2>
+    <button class="close-btn" (click)="closeModal()">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <label class="field-label">Name</label>
+    <input class="field-input" [(ngModel)]="vinyl.name" />
+
+    <label class="field-label">Artist</label>
+    <input class="field-input" [(ngModel)]="vinyl.artist_name" />
+
+    <label class="field-label">Genre</label>
+    <input class="field-input" [(ngModel)]="vinyl.genres" />
+
+    <label class="field-label">Photo Path</label>
+    <input class="field-input" [(ngModel)]="vinyl.photo_file_path" />
+  </div>
+
+  <div class="modal-footer">
+    <button class="save-btn" (click)="saveChanges()">SAVE</button>
+    <button class="cancel-btn" (click)="closeModal()">CANCEL</button>
+  </div>
+</div>

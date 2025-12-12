@@ -13,4 +13,8 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/vinyls`);
   }
 
+  editVinyl(vinylId: number, vinylData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/vinyls/${vinylId}`, vinylData);
+  }
+
 }

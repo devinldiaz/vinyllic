@@ -29,3 +29,35 @@ h3 {
   transform: translateY(-4px);
   box-shadow: 0 0 20px var(--accent-cyan);
 }
+
+.edit-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.edit-btn .material-icons {
+  font-size: 18px;
+  color: white;
+}

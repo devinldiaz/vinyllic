@@ -2,7 +2,17 @@
   <h1 class="cyber-glow">Owned Collection</h1>
   <div class="row g-4">
     <div class="col-md-4" *ngFor="let vinyl of vinyls">
-      <app-vinyl-card [vinyl]="vinyl"></app-vinyl-card>
+      <app-vinyl-card
+      [vinyl]="vinyl"
+      (edit)="openEditModal($event)">
+      </app-vinyl-card>
+      <app-edit-modal
+      *ngIf="showEditModal"
+      [vinyl]="selectedVinyl"
+      (save)="onSave($event)"
+      (close)="showEditModal = false"
+></app-edit-modal>
+
     </div>
   </div>
 </div>
