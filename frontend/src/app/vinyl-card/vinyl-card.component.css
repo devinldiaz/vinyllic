@@ -7,19 +7,6 @@ h3 {
     color: #E0E0E0;
 }
 
-.card {
-    border: 1px solid gray;
-    margin: 15px;
-    width: 200px;
-    background-color: hsl(0, 0%, 7%);
-    color: #E0E0E0;
-}
-
-.card:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transition: 0.3s;
-}
-
 .vinyl-card {
   transition: transform 0.2s, box-shadow 0.2s;
   background: var(--card-dark);
@@ -54,7 +41,7 @@ h3 {
 }
 
 .edit-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--cyan-glow);
 }
 
 .edit-btn .material-icons {

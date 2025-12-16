@@ -2,11 +2,29 @@
 :root {
   --bg-dark: #0b0f16;
   --card-dark: #141b29;
-  --accent-pink: #ff00e6;
+  --panel-dark: #121622;
+  --border-dark: #1e2333;
+
+  --accent-pink: #ff007b;
   --accent-cyan: #00f6ff;
   --text-light: #e4f4ff;
   --text-dim: #9bb0c9;
+
+  --primary: #8576EB;
+  --secondary: #2F85D4;
+  --action: #2991E6;
+
+  --cyan-glow: #7EDEF3;
+  --indigo: #7A79FB;
+
+  --pink-soft: #F0AED8;
+  --pink-hot: #EA78BF;
+  --pink-pop: #F77F9B;
+
+  --violet-deep: #AC67D2;
+  --violet-shadow: #6B50C3;
 }
+
 
 body {
   background: var(--bg-dark);
