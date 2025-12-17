@@ -17,4 +17,8 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/vinyls/${vinylId}`, vinylData);
   }
 
+  createVinyl(vinylData: any): Observable<any>{
+    return this.http.post(`${this.apiUrl}/vinyls`, vinylData);
+  }
+
 }

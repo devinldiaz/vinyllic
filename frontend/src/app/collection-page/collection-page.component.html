@@ -1,5 +1,14 @@
 <div class="container mt-5">
   <h1 class="cyber-glow">Owned Collection</h1>
+  <button class="create-btn" (click)="openCreateModal()">
+    Add new vinyl
+  </button>
+  <app-create-modal
+  *ngIf="showCreateModal"
+  (create)="onCreate($event)"
+  (close)="closeCreateModal()"
+  >
+  </app-create-modal>
   <div class="row g-4">
     <div class="col-md-4" *ngFor="let vinyl of vinyls">
       <app-vinyl-card
@@ -10,9 +19,8 @@
       *ngIf="showEditModal"
       [vinyl]="selectedVinyl"
       (save)="onSave($event)"
-      (close)="showEditModal = false"
-></app-edit-modal>
-
+      (close)="closeEditModal()">
+    </app-edit-modal>
     </div>
   </div>
 </div>

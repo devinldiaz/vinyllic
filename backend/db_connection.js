@@ -9,6 +9,7 @@ const pool = mysql2.createPool({
   database: process.env.MYSQL_DATABASE
 }).promise();
 
+
 pool.getConnection((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
@@ -34,27 +35,36 @@ export async function getVinyl(id){
   return rows[0];
 }
 
-export async function createVinyl(name){
-  const result = await pool.query(
-    `INSERT INTO vinyls (name) VALUES (?)`, [name]
-  );
+export async function createVinyl(data){
+  const fields = [];
+  const values = [];
+
+  for (const [key, value] of Object.entries(data)){
+    if (key === "genres"){
+      fields.push(key);
+      values.push(JSON.stringify(value));
+    }
+    else{
+      fields.push(key);
+      values.push(value);
+    }
+  }
+
+  if (fields.length === 0){
+    throw new Error("No data provided to create vinyl");
+  }
+
+  const placeholders = fields.map(() => '?').join(', ');
+
+  const sql =`
+  INSERT INTO vinyls (${fields.join(", ")})
+  VALUES (${placeholders})
+  `;
+
+  const [result] = await pool.query(sql, values);
+
   const id = result.insertId;
   return getVinyl(id);
-}
-
-export async function getArtist(id){
-  const [rows] = await pool.query(
-    `SELECT * FROM artists WHERE artist_id = ?`, [id]
-  )
-  return rows[0];
-}
-
-export async function createArtist(name){
-  const result = await pool.query(
-    `INSERT INTO artists (name) VALUES (?)`, [name]
-  );
-  const id = result.insertId;
-  return getArtist(id);
 }
 
 export async function updateVinyl(id, data) {
@@ -87,6 +97,23 @@ export async function updateVinyl(id, data) {
 
   return getVinyl(id);
 }
+
+
+export async function getArtist(id){
+  const [rows] = await pool.query(
+    `SELECT * FROM artists WHERE artist_id = ?`, [id]
+  )
+  return rows[0];
+}
+
+export async function createArtist(name){
+  const result = await pool.query(
+    `INSERT INTO artists (name) VALUES (?)`, [name]
+  );
+  const id = result.insertId;
+  return getArtist(id);
+}
+
 //const vinyl = await getVinyl(2);
 //console.log(vinyl);
 

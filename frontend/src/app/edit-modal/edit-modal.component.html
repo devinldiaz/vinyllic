@@ -1,6 +1,6 @@
 <div class="modal-backdrop" (click)="closeModal()"></div>
 
-<div class="modal-window">
+<div class="modal-window" (click)="$event.stopPropagation()">
   <div class="modal-header">
     <h2 class="cyber-title">Edit Vinyl</h2>
     <button class="close-btn" (click)="closeModal()">✕</button>

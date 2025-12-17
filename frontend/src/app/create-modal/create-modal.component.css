@@ -1,0 +1,126 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(var(--accent-cyan), rgba(0,0,0));
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  width: 420px;
+  background: #0a0a0f;
+  padding: 20px;
+  border: 2px solid #08f7fe;
+  box-shadow: 0 0 20px #08f7fe, 0 0 40px #09fbd3 inset;
+  border-radius: 10px;
+  z-index: 901;
+  animation: popIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes popIn {
+  from { transform: translate(-50%, -45%) scale(0.9); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cyber-title {
+  color: #08f7fe;
+  font-size: 1.6rem;
+  margin: 0;
+  text-shadow: 0 0 8px #08f7fe;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #ff4f9f;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  text-shadow: 0 0 10px #ff4f9f;
+}
+
+.modal-body {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field-label {
+  color: #09fbd3;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px #09fbd3;
+}
+
+.field-input {
+  background: #111;
+  border: 1px solid #08f7fe;
+  padding: 8px;
+  border-radius: 6px;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+}
+
+.field-input:focus {
+  box-shadow: 0 0 10px #08f7fe;
+}
+
+/* Footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn {
+  background: #08f7fe;
+  color: black;
+  box-shadow: 0 0 10px #08f7fe;
+}
+
+.save-btn:hover {
+  box-shadow: 0 0 20px #08f7fe;
+}
+
+.cancel-btn {
+  background: #ff4f9f;
+  color: white;
+  box-shadow: 0 0 10px #ff4f9f;
+}
+
+.cancel-btn:hover {
+  box-shadow: 0 0 20px #ff4f9f;
+}
