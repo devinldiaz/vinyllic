@@ -29,6 +29,18 @@ app.put("/vinyls/:id", async (req, res) => {
     }
 })
 
+app.post("/vinyls", async (req, res) => {
+    try{
+        const body = req.body;
+        const vinyl = await createVinyl(body);
+        res.status(201).json(vinyl);
+    }
+    catch(error){
+        res.status(500).send({error: "Failed to create vinyl"});
+    }
+})
+
+
 app.listen(8080, () => {
     console.log('Server is running on port 8080');
 })
