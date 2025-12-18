@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(var(--accent-cyan), rgba(0,0,0));
+  background: linear-gradient(var(--primary), rgba(0,0,0));
   backdrop-filter: blur(3px);
   z-index: 900;
   animation: fadeIn 0.2s ease-out;
@@ -23,7 +23,7 @@
   box-shadow: 0 0 20px #08f7fe, 0 0 40px #09fbd3 inset;
   border-radius: 10px;
   z-index: 901;
-  animation: popIn 0.25s ease-out;
+  animation: popIn 0.25s ease-out, glowPulse 4s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
@@ -34,6 +34,34 @@
 @keyframes popIn {
   from { transform: translate(-50%, -45%) scale(0.9); opacity: 0; }
   to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 0 10px var(--cyan-glow),
+      0 0 20px var(--secondary),
+      inset 0 0 10px rgba(255,255,255,0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--cyan-glow),
+      0 0 40px var(--primary),
+      inset 0 0 14px rgba(255,255,255,0.08);
+  }
+  100% {
+    box-shadow:
+      0 0 10px var(--cyan-glow),
+      0 0 20px var(--secondary),
+      inset 0 0 10px rgba(255,255,255,0.05);
+  }
+}
+
+.field-input:focus {
+  border-color: var(--glow-cyan);
+  box-shadow:
+    0 0 6px var(--glow-cyan),
+    0 0 12px var(--secondary);
 }
 
 .modal-header {
@@ -112,7 +140,9 @@
 }
 
 .save-btn:hover {
-  box-shadow: 0 0 20px #08f7fe;
+  box-shadow:
+    0 0 12px var(--glow-cyan),
+    0 0 24px var(--secondary);
 }
 
 .cancel-btn {
@@ -122,5 +152,40 @@
 }
 
 .cancel-btn:hover {
-  box-shadow: 0 0 20px #ff4f9f;
+  box-shadow:
+    0 0 12px var(--pink-glow),
+    0 0 24px var(--primary);
 }
+
+.genre-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #0a0a0f;
+  border: 1px solid var(--secondary);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.chip:hover {
+  box-shadow: 0 0 8px var(--secondary);
+}
+
+.chip.active {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary)
+  );
+  color: black;
+  box-shadow:
+    0 0 10px var(--cyan-glow),
+    0 0 20px var(--indigo-glow);
+}
+
