@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 export class CreateModalComponent {
   @Output() create= new EventEmitter<any>();
   @Output() close = new EventEmitter<void>();
+  saving = false;
+  success = false;
 
   vinyl: any = {
     name: '',
@@ -23,26 +25,16 @@ export class CreateModalComponent {
   }
 
   genresList = [
-    'Alternative',
-    'Bedroom pop',
-    'Chillwave',
-    'Dream pop',
-    'Electronic',
-    'Experimental',
-    'Garage rock',
-    'Indie',
-    'Indie pop',
-    'Indie rock',
-    'Lo-fi',
-    'Neo-psychedelic',
-    'New wave',
-    'Noise rock',
-    'Pop',
+    'Alternative', 'Bedroom pop', 'Chillwave', 'Dream pop',
+    'Electronic', 'Experimental', 'Garage rock', 'Indie',
+    'Indie pop', 'Indie rock', 'Lo-fi', 'Neo-psychedelic',
+    'New wave', 'Noise rock', 'Pop',
     'Post-punk',
     'Post-rock',
     'Psychedelic rock',
     'Shoegaze',
     'Sovietwave',
+    'Soundtrack',
     'Surf rock',
     'Synth-pop',
     'Synthwave',
@@ -56,8 +48,8 @@ export class CreateModalComponent {
     this.vinyl.genres.splice(i, 1);
   } else {
     this.vinyl.genres.push(genre);
+    }
   }
-}
 
   createVinyl() {
     this.create.emit(this.vinyl);
@@ -65,5 +57,19 @@ export class CreateModalComponent {
 
   closeModal(){
     this.close.emit();
+  }
+
+  onSave(){
+    this.saving = true;
+
+    setTimeout(() => {
+    this.saving = false;
+    this.success = true;
+
+      setTimeout(() => {
+        this.closeModal();
+        this.success = false;
+      }, 800);
+    }, 900);
   }
 }

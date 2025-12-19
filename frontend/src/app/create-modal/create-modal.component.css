@@ -158,10 +158,32 @@
 }
 
 .genre-chips {
+  max-height: 160px;
+  overflow-y: auto;
+  padding-right: 6px;
+
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) transparent;
 }
+
+.genre-chips::-webkit-scrollbar {
+  width: 6px;
+}
+
+.genre-chips::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    var(--primary),
+    var(--secondary)
+  );
+  border-radius: 10px;
+}
+
+
+
 
 .chip {
   padding: 6px 12px;
@@ -171,6 +193,8 @@
   color: var(--text-light);
   cursor: pointer;
   transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .chip:hover {
@@ -187,5 +211,86 @@
   box-shadow:
     0 0 10px var(--cyan-glow),
     0 0 20px var(--indigo-glow);
+}
+
+.chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.4) 10%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.chip.active::after {
+  opacity: 1;
+  animation: ripple 0.4s ease-out;
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0.6);
+  }
+  to {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* save animations */
+.save-btn.saving {
+  animation: charge 1s infinite linear;
+}
+
+.save-btn.success {
+  animation: successGlow 0.8s ease-out;
+}
+
+@keyframes charge {
+  0% {
+    box-shadow: 0 0 8px var(--secondary);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--cyan-glow),
+      0 0 40px var(--primary);
+  }
+  100% {
+    box-shadow: 0 0 8px var(--secondary);
+  }
+}
+
+@keyframes successGlow {
+  0% {
+    box-shadow: 0 0 10px var(--cyan-glow);
+  }
+  50% {
+    box-shadow:
+      0 0 30px var(--cyan-glow),
+      0 0 60px var(--indigo-glow);
+  }
+  100% {
+    box-shadow: 0 0 10px var(--cyan-glow);
+  }
+}
+
+/* modal fade out */
+.modal-window.closing {
+  animation: fadeOutScale 0.3s ease forwards;
+}
+
+.modal-backdrop.closing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOutScale {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -55%) scale(0.95);
+  }
 }
 
