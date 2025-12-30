@@ -98,6 +98,12 @@ export async function updateVinyl(id, data) {
   return getVinyl(id);
 }
 
+export async function deleteVinyl(id){
+  const [result] = await pool.query(
+    `DELETE FROM vinyls WHERE vinyl_id = ?`, [id]
+  )
+  return result.affectedRows > 0;
+}
 
 export async function getArtist(id){
   const [rows] = await pool.query(
@@ -114,11 +120,10 @@ export async function createArtist(name){
   return getArtist(id);
 }
 
+
 //const vinyl = await getVinyl(2);
 //console.log(vinyl);
 
 // const result = await createVinyl('The Symposium');
 // console.log(result);
 
-// const vinyls = await getVinyls();
-// console.log(vinyls);

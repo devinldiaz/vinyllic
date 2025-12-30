@@ -21,4 +21,8 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/vinyls`, vinylData);
   }
 
+  deleteVinyl(vinylId: number): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/vinyls/${vinylId}`);
+  }
+
 }

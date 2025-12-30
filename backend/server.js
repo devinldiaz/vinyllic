@@ -1,5 +1,5 @@
 import express from 'express';
-import { getVinyls, getVinyl, createVinyl, updateVinyl } from "./db_connection.js";
+import { getVinyls, getVinyl, createVinyl, updateVinyl, deleteVinyl } from "./db_connection.js";
 import cors from 'cors';
 
 const app = express();
@@ -37,6 +37,17 @@ app.post("/vinyls", async (req, res) => {
     }
     catch(error){
         res.status(500).send({error: "Failed to create vinyl"});
+    }
+})
+
+app.delete("/vinyls/:id", async (req, res) => {
+    try{
+        const id = req.params.id;
+        const deletedVinyl = await deleteVinyl(id);
+        res.status(204).send();
+    }
+    catch(error){
+        res.status(500).send({error: "Failed to delete vinyl"});
     }
 })
 

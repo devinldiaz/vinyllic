@@ -8,8 +8,9 @@ h3 {
 }
 
 .vinyl-card {
-  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
   background: var(--card-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .vinyl-card:hover {
@@ -17,46 +18,37 @@ h3 {
   box-shadow: 0 0 20px var(--accent-cyan);
 }
 
-.edit-btn {
+.edit-wrapper {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
 
-  width: 28px;
-  height: 28px;
+.delete-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
 
-  border: none;
-  border-radius: 4px;
-  padding: 0;
-
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-  transition: background 0.2s ease;
+.vinyl-card:hover .edit-wrapper,
+.vinyl-card:hover .delete-wrapper {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .edit-btn:hover, .delete-btn:hover {
   background: var(--cyan-glow);
 }
 
-.edit-btn .material-icons {
-  font-size: 18px;
-  color: white;
-}
-
-.delete-btn {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-
+.edit-btn, .delete-btn {
   width: 28px;
   height: 28px;
-
   border: none;
   border-radius: 4px;
   padding: 0;
@@ -70,4 +62,10 @@ h3 {
 
   cursor: pointer;
   transition: background 0.2s ease;
+}
+
+.edit-btn .material-icons,
+.delete-btn .material-icons {
+  font-size: 18px;
+  color: white;
 }

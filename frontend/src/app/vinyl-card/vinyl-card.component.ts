@@ -12,9 +12,14 @@ import { CommonModule } from '@angular/common'
 export class VinylCardComponent {
   @Input() vinyl: any;
   @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   openEdit() {
     this.edit.emit(this.vinyl);
   }
   
+  openDelete() {
+    this.delete.emit(this.vinyl);
+  }
+
 }

@@ -75,4 +75,14 @@ export class CollectionPageComponent {
     });
   }
 
+  onDelete(vinyl: any) {
+    this.apiService.deleteVinyl(vinyl.vinyl_id).subscribe({
+      next: () => {
+        this.loadVinyls();
+      },
+      error: (err: any) => {
+        console.error('Deletion failed', err);
+      }
+    });
+  }
 }

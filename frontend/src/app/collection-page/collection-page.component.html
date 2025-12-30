@@ -13,7 +13,8 @@
     <div class="col-md-4" *ngFor="let vinyl of vinyls">
       <app-vinyl-card
       [vinyl]="vinyl"
-      (edit)="openEditModal($event)">
+      (edit)="openEditModal($event)"
+      (delete)="onDelete($event)">
       </app-vinyl-card>
       <app-edit-modal
       *ngIf="showEditModal"

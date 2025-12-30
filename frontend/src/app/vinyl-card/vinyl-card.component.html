@@ -1,13 +1,15 @@
 <div class="vinyl-card">
-  <div>
-    <button class="edit-btn" (click)="openEdit()">
-      <span class="material-icons">edit</span>
-    </button>
-  </div>
-    <div>
-    <button class="delete-btn">
-      <span class="material-icons">delete</span>
-    </button>
+  <div class="card-actions">
+    <div class="edit-wrapper">
+      <button class="edit-btn" (click)="openEdit()">
+        <span class="material-icons">edit</span>
+      </button>
+    </div>
+    <div class="delete-wrapper">
+      <button class="delete-btn" (click)="openDelete()">
+        <span class="material-icons">delete</span>
+      </button>
+    </div>
   </div>
   <div>
     <img
