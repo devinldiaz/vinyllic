@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollectionPageComponent } from './collection-page.component';
+import { VinylListPageComponent } from './vinyl-list-page.component';
 
-describe('CollectionPageComponent', () => {
-  let component: CollectionPageComponent;
-  let fixture: ComponentFixture<CollectionPageComponent>;
+describe('VinylListPageComponent', () => {
+  let component: VinylListPageComponent;
+  let fixture: ComponentFixture<VinylListPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CollectionPageComponent]
+      imports: [VinylListPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CollectionPageComponent);
+    fixture = TestBed.createComponent(VinylListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

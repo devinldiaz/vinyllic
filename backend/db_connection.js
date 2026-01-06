@@ -21,7 +21,7 @@ pool.getConnection((err) => {
 
 export async function getVinyls(){
   const [rows] = await pool.query(
-    `SELECT v.vinyl_id, v.name, v.photo_file_path, JSON_EXTRACT(v.genres, '$') AS genres, artist_name
+    `SELECT v.vinyl_id, v.name, v.photo_file_path, JSON_EXTRACT(v.genres, '$') AS genres, artist_name, v.owned
     FROM vinyls v`
   );
 
@@ -44,7 +44,11 @@ export async function createVinyl(data){
       fields.push(key);
       values.push(JSON.stringify(value));
     }
-    else{
+    else if (key === "owned") {
+      fields.push(key);
+      values.push(value ? 1 : 0);
+    }
+    else {
       fields.push(key);
       values.push(value);
     }
@@ -77,11 +81,17 @@ export async function updateVinyl(id, data) {
     if (key === "genres") {
       fields.push(`${key} = ?`);
       values.push(JSON.stringify(value));
-    } else {
+    }
+    else if (key === "owned") {
+      fields.push(`${key} = ?`);
+      values.push(value ? 1 : 0);
+    }
+    else {
       fields.push(`${key} = ?`);
       values.push(value);
     }
   }
+  
 
   if (fields.length === 0) return getVinyl(id);
 

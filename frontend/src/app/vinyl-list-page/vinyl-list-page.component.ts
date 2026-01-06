@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
 import { VinylCardComponent } from '../vinyl-card/vinyl-card.component'
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { CreateModalComponent } from '../create-modal/create-modal.component';
 import { CommonModule } from '@angular/common'
 
 @Component({
-  selector: 'app-collection-page',
+  selector: 'app-vinyl-list-page',
   standalone: true,
   imports: [CommonModule, VinylCardComponent, EditModalComponent, CreateModalComponent],
-  templateUrl: './collection-page.component.html',
-  styleUrl: './collection-page.component.css'
+  templateUrl: './vinyl-list-page.component.html',
+  styleUrl: './vinyl-list-page.component.css'
 })
-export class CollectionPageComponent {
+export class VinylListPageComponent {
   vinyls: any[] = [];
   selectedVinyl: any = null;
   showEditModal = false;
   showCreateModal = false;
-  constructor(private apiService: ApiService){}
+  type: any;
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute
+  ){}
 
   ngOnInit(){
+    this.type = this.route.snapshot.data['type'];
     this.loadVinyls();
   }
 
@@ -27,7 +33,17 @@ export class CollectionPageComponent {
     this.apiService.getVinyls().subscribe({
       next: (data) => {
         console.log("Vinyls received:", data);
-        this.vinyls = data;
+
+        data.forEach((v: any) => {
+          v.owned = v.owned === 1 || v.owned === true;
+        });
+
+        if (this.type === 'owned'){
+          this.vinyls = data.filter((v: any) => v.owned);
+        }
+        else if (this.type === 'wishlist'){
+          this.vinyls = data.filter((v: any) => !v.owned);
+        }
       }
     });
   }
