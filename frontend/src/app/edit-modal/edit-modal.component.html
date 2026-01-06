@@ -18,6 +18,12 @@
 
     <label class="field-label">Photo Path</label>
     <input class="field-input" [(ngModel)]="vinyl.photo_file_path" />
+
+    <label class="field-label">Select type</label>
+    <select [(ngModel)]="vinyl.owned">
+      <option [ngValue]="true">Owned</option>
+      <option [ngValue]="false">Wishlist</option>
+    </select>
   </div>
 
   <div class="modal-footer">

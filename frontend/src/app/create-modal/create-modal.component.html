@@ -26,12 +26,17 @@
             </button>
         </div>
         
-
         <label class="field-label">Notes</label>
         <input class="field-input" placeholder= "" [(ngModel)]="vinyl.notes"/>
 
         <label class="field-label">Photo Path</label>
         <input class="field-input" [(ngModel)]="vinyl.photo_file_path"/>
+
+        <label class="field-label">Select type</label>
+         <select [(ngModel)]="vinyl.owned">
+            <option [ngValue]="true">Owned</option>
+            <option [ngValue]="false">Wishlist</option>
+        </select>
     </div>
     <div>
         <button class="save-btn" (click)="createVinyl()">Save</button>
