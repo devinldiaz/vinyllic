@@ -19,6 +19,8 @@ Full-stack app for rendering a list of vinyl albums from a database.
 - Displays vinyl records in a clean Angular UI  
 - Responsive card layout with album image, title, & artist  
 - Organized backend API structure with REST endpoints
+- Add, edit, or delete vinyls
+- Navigate between an owned & wishlisted vinyl collection 
 
 
 ## Project Structure
@@ -31,7 +33,7 @@ vinyllic/
 ## Run Locally
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/vinyllic.git
+git clone https://github.com/devinldiaz/vinyllic.git
 cd vinyllic
 ```
 
