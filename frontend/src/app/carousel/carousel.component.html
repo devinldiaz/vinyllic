@@ -9,6 +9,7 @@
      [class.active]="i === 0"
      [attr.aria-current]="i === 0 ? 'true' : null"
      [attr.aria-label]="'Slide ' + (i + 1)">
+    </button>
   </div>
 
   <div class="carousel-inner">
@@ -18,7 +19,7 @@
       [class.active]="i === 0">
 
       <img
-        [src]="photo"
+        [src]="image"
         class="d-block w-100"
         alt="Vinyl image">
     </div>
